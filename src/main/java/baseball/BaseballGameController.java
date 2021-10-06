@@ -4,16 +4,22 @@ import nextstep.utils.Randoms;
 
 public class BaseballGameController {
 
-    final StringBuilder generatedNumberString = new StringBuilder();;
+    final StringBuilder generatedNumberString = new StringBuilder();
     static final int NUMBER_LENGTH = 3;
+    InputView inputView = new InputView();
 
     static void run() {
         BaseballGameController controller = new BaseballGameController();
         controller.initGame();
+        controller.startGame();
     }
 
     private void initGame() {
         generateNumberString();
+    }
+
+    private void startGame() {
+        inputView.inputUserNumber();
     }
 
     private String generateNumberString() {
@@ -21,7 +27,6 @@ public class BaseballGameController {
             generatedNumberString.append(getOneRandomNumber());
         }
         return generatedNumberString.toString();
-
     }
 
     private int getOneRandomNumber() {
@@ -35,8 +40,4 @@ public class BaseballGameController {
     private boolean isDuplicate(int number) {
         return generatedNumberString.toString().contains(String.valueOf(number));
     }
-
-
-
-
 }
