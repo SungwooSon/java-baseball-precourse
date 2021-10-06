@@ -16,7 +16,7 @@ public class BaseballGameController {
         generateNumberString();
     }
 
-    String generateNumberString() {
+    private String generateNumberString() {
         for(int i=0; i<NUMBER_LENGTH; i++) {
             generatedNumberString.append(getOneRandomNumber());
         }
@@ -35,6 +35,8 @@ public class BaseballGameController {
     private boolean isDuplicate(int number) {
         return generatedNumberString.toString().contains(String.valueOf(number));
     }
+
+
 
 
 }
