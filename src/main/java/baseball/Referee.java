@@ -24,15 +24,25 @@ public class Referee {
         }
     }
 
-    private void judgeOneBall(String number, int ballCount) {
-        if(number.indexOf(number) == ballCount)
+    private void judgeOneBall(String oneUserNumber, int ballCount) {
+        if(number.indexOf(oneUserNumber) == ballCount)
             strike++;
 
-        if(number.indexOf(number) != -1 && number.indexOf(number) != ballCount)
+        if(number.indexOf(oneUserNumber) != -1 && number.indexOf(oneUserNumber) != ballCount)
             ball++;
 
-        if(number.indexOf(number) == -1)
+        if(number.indexOf(oneUserNumber) == -1)
             nothing++;
+    }
+
+    public boolean isThreeStrike() {
+        return strike==3?true:false;
+    }
+
+    public void initBallCount() {
+        this.strike = 0;
+        this.ball = 0;
+        this.nothing = 0;
     }
 
     public int getStrike() {
