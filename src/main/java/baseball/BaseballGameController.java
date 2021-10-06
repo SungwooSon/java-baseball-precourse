@@ -7,6 +7,7 @@ public class BaseballGameController {
     final StringBuilder generatedNumberString = new StringBuilder();
     static final int NUMBER_LENGTH = 3;
     InputView inputView = new InputView();
+    Referee referee;
 
     static void run() {
         BaseballGameController controller = new BaseballGameController();
@@ -15,11 +16,12 @@ public class BaseballGameController {
     }
 
     private void initGame() {
-        generateNumberString();
+        referee = new Referee(generateNumberString());
     }
 
     private void startGame() {
-        inputView.inputUserNumber();
+        String inputUserNumber = inputView.inputUserNumber();
+        referee.judge(inputUserNumber);
     }
 
     private String generateNumberString() {
