@@ -34,4 +34,16 @@ public class Referee {
         if(number.indexOf(number) == -1)
             nothing++;
     }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
+    }
+
+    public int getNothing() {
+        return nothing;
+    }
 }
