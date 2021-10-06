@@ -3,31 +3,22 @@ package baseball;
 import nextstep.utils.Randoms;
 
 public class BaseballGameController {
+    final private String CONTINUE = "1";
+    final private int NUMBER_LENGTH = 3;
 
-    final StringBuilder generatedNumberString = new StringBuilder();
-    static final int NUMBER_LENGTH = 3;
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    Referee referee;
+    private StringBuilder generatedNumberString;
+    private Referee referee;
 
-    static void run() {
-        BaseballGameController controller = new BaseballGameController();
-        controller.initGame();
-        controller.startGame();
+    void run() {
+        do {
+            initGame();
+            startGame();
+        }while(isStopOrRestart());
     }
 
     private void initGame() {
+        generatedNumberString = new StringBuilder();
         referee = new Referee(generateNumberString());
-    }
-
-    private void startGame() {
-        do{
-            String inputUserNumber = inputView.inputUserNumber();
-            referee.judge(inputUserNumber);
-            outputView.outputResult(referee);
-            referee.initBallCount();
-        }while(!referee.isThreeStrike());
-
     }
 
     private String generateNumberString() {
@@ -47,5 +38,18 @@ public class BaseballGameController {
 
     private boolean isDuplicate(int number) {
         return generatedNumberString.toString().contains(String.valueOf(number));
+    }
+
+    private void startGame() {
+        do{
+            referee.initBallCount();
+            String inputUserNumber = Prompter.queryForUserInputNumber();
+            referee.judge(inputUserNumber);
+            Prompter.printResult(referee);
+        }while(!referee.isThreeStrike());
+    }
+
+    private boolean isStopOrRestart() {
+        return Prompter.queryForContinuousGame().equals(CONTINUE);
     }
 }
